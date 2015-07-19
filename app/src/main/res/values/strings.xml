@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Urodzinowa</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- MainActivity -->
+    <string name="button_show_message">Szyfr</string>
+    <string name="button_show_map">Mapa</string>
+
+
+    <string name="save_location">Zapisz lokalizację</string>
+    <string name="title_activity_main">MainActivity</string>
+</resources>
