@@ -24,7 +24,8 @@
             android:layout_height="wrap_content"
             android:text="@string/button_show_message"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp"/>
+            android:layout_marginTop="50dp"
+            android:onClick="navigateToCipher"/>
 
         <Button
             android:layout_width="100dp"

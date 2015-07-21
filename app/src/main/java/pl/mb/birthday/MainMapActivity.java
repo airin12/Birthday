@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationListener;
@@ -34,22 +35,41 @@ public class MainMapActivity extends Activity implements LocationListener{
     private GoogleMap googleMap;
     private LocationManager locationManager;
     private Location actualLocation;
-    private Location basen = new Location(LocationManager.GPS_PROVIDER);
-    private Location dom = new Location(LocationManager.GPS_PROVIDER);
-    private boolean basenAdded = false;
-    private boolean domAdded = false;
+
+    private Location [] locationArray = new Location[]{
+            new Location(LocationManager.GPS_PROVIDER),
+            new Location(LocationManager.GPS_PROVIDER)
+    };
+
+    {
+        locationArray[0].setLatitude(50.08754037913904);
+        locationArray[0].setLongitude(19.939354062080383);
+
+        locationArray[1].setLatitude(50.06862685670055);
+        locationArray[1].setLongitude(19.901154041290283);
+    }
+
+    private String [] descArray = new String[]{
+        "dom",
+        "basen"
+    };
+
+    private int actualIndexToDiscover = 0;
+//    private Location basen = new Location(LocationManager.GPS_PROVIDER);
+//    private Location dom = new Location(LocationManager.GPS_PROVIDER);
+//    private boolean basenAdded = false;
+//    private boolean domAdded = false;
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_map);
+
+        prefs = this.getSharedPreferences("my_prefs",Context.MODE_PRIVATE);
+        actualIndexToDiscover = prefs.getInt("index",0);
+
         createMapView();
-
-        basen.setLatitude(50.06862685670055);
-        basen.setLongitude(19.901154041290283);
-
-        dom.setLatitude(50.08754037913904);
-        dom.setLongitude(19.939354062080383);
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,5000,5,this);
@@ -106,6 +126,10 @@ public class MainMapActivity extends Activity implements LocationListener{
                     googleMap.setMyLocationEnabled(true);
                 }
 
+                for(int i = 0 ; i < actualIndexToDiscover ; i++){
+                    addMarker(locationArray[i],descArray[i]);
+                }
+
             }
         } catch (NullPointerException exception){
             Log.e("mapApp", exception.toString());
@@ -139,18 +163,11 @@ public class MainMapActivity extends Activity implements LocationListener{
 
         actualLocation = location;
 
-        if(actualLocation.distanceTo(dom) < 500) {
-            if(!domAdded){
-                notifyMainScreen("jestes kolo domu");
-                domAdded = true;
-                addMarker(dom,"dom");
-            }
-        } else if(actualLocation.distanceTo(basen) < 500) {
-            if(!basenAdded){
-                notifyMainScreen("jestes kolo basenu");
-                basenAdded = true;
-                addMarker(basen,"basen");
-            }
+        if(actualLocation.distanceTo(locationArray[actualIndexToDiscover]) < 500) {
+            notifyMainScreen("Jestes w okolicy: " + descArray[actualIndexToDiscover]);
+            addMarker(locationArray[actualIndexToDiscover],descArray[actualIndexToDiscover]);
+            actualIndexToDiscover++;
+            prefs.edit().putInt("index",actualIndexToDiscover).apply();
         }
     }
 

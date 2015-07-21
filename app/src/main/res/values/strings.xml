@@ -11,4 +11,5 @@
 
     <string name="save_location">Zapisz lokalizację</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_cipher">CipherActivity</string>
 </resources>

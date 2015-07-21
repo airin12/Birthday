@@ -12,11 +12,10 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/cake_medium"
         android:label="@string/app_name"
         android:launchMode="singleTop"
         android:theme="@android:style/Theme.NoTitleBar" >
-
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
@@ -37,6 +36,10 @@
         <activity
             android:name=".MainMapActivity"
             android:label="@string/title_activity_main" >
+        </activity>
+        <activity
+            android:name=".CipherActivity"
+            android:label="@string/title_activity_cipher" >
         </activity>
     </application>
 
