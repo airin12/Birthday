@@ -12,4 +12,14 @@
     <string name="save_location">Zapisz lokalizację</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_cipher">CipherActivity</string>
+
+    <!-- CipherActivity -->
+    <string name="cipher_encoded_message">Szyfr:</string>
+    <string name="cipher_decoded_message">Odszyfrowana wiadomość:</string>
+    <string name="cipher_decode_button">Deszyfruj</string>
+    <string name="cipher_key_text_field">Wpisz klucz deszyfrujący</string>
+
+    <string name="cipher_key_length_invalid">Klucz musi mieć długość dokładnie 16 znaków</string>
+
+
 </resources>

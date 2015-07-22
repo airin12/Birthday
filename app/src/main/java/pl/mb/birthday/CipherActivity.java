@@ -5,22 +5,32 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import pl.mb.birthday.pl.mb.mirthday.encryption.AES;
 
 
 public class CipherActivity extends Activity {
 
+    private final String message = "Prezent znajduje się w domu u niejakiej Natalii";
+    private EditText keyEditText;
+    private TextView messageTextView;
+    private byte [] cipher;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cipher);
 
-        String message = "Prezent znajduje się w domu u niejakiej Natalii";
+        keyEditText = (EditText) findViewById(R.id.key_cipher_edit_text);
+        messageTextView = (TextView) findViewById(R.id.decoded_cipher_text_view);
+
         String resultCipher = "";
         try {
-            byte [] cipher = AES.encrypt(message,"0123456789abcdef");
+            cipher = AES.encrypt(message,"0123456789abcdef");
             StringBuilder builder = new StringBuilder();
             for(byte b : cipher)
                 builder.append(new Integer(b));
@@ -56,5 +66,22 @@ public class CipherActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void decode(View view) {
+        try {
+            String key = keyEditText.getText().toString();
+
+            if(key.length() != 16){
+                Toast.makeText(getApplicationContext(),
+                        getResources().getString(R.string.cipher_key_length_invalid), Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            String decodedMessage = AES.decrypt(cipher,key);
+            messageTextView.setText(decodedMessage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

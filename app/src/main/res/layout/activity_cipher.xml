@@ -1,12 +1,48 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="pl.mb.birthday.CipherActivity">
+    tools:context="pl.mb.birthday.CipherActivity"
+    android:orientation="vertical">
 
-    <TextView android:id="@+id/cipher_text_view" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cipher_encoded_message"/>
+    <TextView android:id="@+id/cipher_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"/>
 
-</RelativeLayout>
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cipher_decoded_message"/>
+
+    <TextView android:id="@+id/decoded_cipher_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:id="@+id/key_cipher_edit_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/cipher_key_text_field"
+        android:maxLines="1"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="@string/cipher_decode_button"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:onClick="decode"/>
+
+</LinearLayout>
