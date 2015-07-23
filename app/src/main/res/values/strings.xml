@@ -20,6 +20,7 @@
     <string name="cipher_key_text_field">Wpisz klucz deszyfrujący</string>
 
     <string name="cipher_key_length_invalid">Klucz musi mieć długość dokładnie 16 znaków</string>
+    <string name="title_activity_tip">TipActivity</string>
 
 
 </resources>

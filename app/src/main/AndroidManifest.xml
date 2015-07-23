@@ -31,7 +31,9 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyD_NElGVE_18QR8BWKaZ4NXcG3TYsxbgGk" />
+            android:value="AIzaSyAOFd__4OWPpB3yMIyceeWB2A-MZSS5NKw"/>
+            <!--android:value="AIzaSyD_NElGVE_18QR8BWKaZ4NXcG3TYsxbgGk" -->
+
 
         <activity
             android:name=".MainMapActivity"
@@ -40,6 +42,10 @@
         <activity
             android:name=".CipherActivity"
             android:label="@string/title_activity_cipher" >
+        </activity>
+        <activity
+            android:name=".TipActivity"
+            android:label="@string/title_activity_tip" >
         </activity>
     </application>
 

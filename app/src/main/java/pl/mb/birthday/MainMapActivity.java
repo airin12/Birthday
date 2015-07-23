@@ -27,10 +27,14 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.HashMap;
+import java.util.Map;
 
-public class MainMapActivity extends Activity implements LocationListener{
+
+public class MainMapActivity extends Activity implements LocationListener, GoogleMap.OnMarkerClickListener{
 
     private GoogleMap googleMap;
     private LocationManager locationManager;
@@ -50,9 +54,10 @@ public class MainMapActivity extends Activity implements LocationListener{
     }
 
     private String [] descArray = new String[]{
-        "dom",
-        "basen"
+            "dom",
+            "basen"
     };
+
 
     private int actualIndexToDiscover = 0;
 //    private Location basen = new Location(LocationManager.GPS_PROVIDER);
@@ -129,6 +134,8 @@ public class MainMapActivity extends Activity implements LocationListener{
                 for(int i = 0 ; i < actualIndexToDiscover ; i++){
                     addMarker(locationArray[i],descArray[i]);
                 }
+
+                googleMap.setOnMarkerClickListener(this);
 
             }
         } catch (NullPointerException exception){
@@ -210,5 +217,17 @@ public class MainMapActivity extends Activity implements LocationListener{
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 // mId allows you to update the notification later on.
         mNotificationManager.notify(1, notification);
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        String title = marker.getTitle();
+        Intent intent = new Intent(this, TipActivity.class);
+
+        intent.putExtra("title", title);
+
+        startActivity(intent);
+
+        return true;
     }
 }
