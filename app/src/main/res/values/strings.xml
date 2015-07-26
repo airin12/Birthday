@@ -22,5 +22,16 @@
     <string name="cipher_key_length_invalid">Klucz musi mieć długość dokładnie 16 znaków</string>
     <string name="title_activity_tip">TipActivity</string>
 
+    <!-- TipActivity -->
+    <string name="tip_actual_tip">Aktualna wskazówka</string>
+    <string name="tip_next_tip">Następna wskazówka</string>
+
+    <!-- tips -->
+    <string name="actual_tip_0">Wskazowka co do tego obrazka</string>
+    <string name="next_tip_0">Jak dotrzeć do nastepnego obrazka</string>
+
+    <string name="actual_tip_1">Coś o basenie</string>
+    <string name="next_tip_1"></string>
+
 
 </resources>

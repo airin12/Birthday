@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,10 +33,27 @@ public class TipActivity extends Activity {
     private Map<String,Integer> imageIdMapActual = new HashMap<String, Integer>();
     private Map<String,Integer> imageIdMapNext = new HashMap<String, Integer>();
 
+
+    private int [] tipIdsActual = new int [] {
+            R.string.actual_tip_0,
+            R.string.actual_tip_1
+    };
+
+    private int [] tipIdsNext = new int [] {
+            R.string.next_tip_0,
+            R.string.next_tip_1
+    };
+
+    private Map<String,Integer> tipIdMapActual = new HashMap<String, Integer>();
+    private Map<String,Integer> tipIdMapNext = new HashMap<String, Integer>();
+
     {
         for(int i = 0 ; i < imageIdsActual.length ; i++){
             imageIdMapActual.put(descArray[i],new Integer(imageIdsActual[i]));
             imageIdMapNext.put(descArray[i],new Integer(imageIdsNext[i]));
+
+            tipIdMapActual.put(descArray[i],new Integer(tipIdsActual[i]));
+            tipIdMapNext.put(descArray[i],new Integer(tipIdsNext[i]));
         }
     }
 
@@ -49,6 +67,14 @@ public class TipActivity extends Activity {
 
         ImageView actualImageView = (ImageView) findViewById(R.id.actual_image_view);
         actualImageView.setImageResource(imageIdMapActual.get(title).intValue());
+        TextView actualTextView = (TextView) findViewById(R.id.actual_tip_view);
+        actualTextView.setText(tipIdMapActual.get(title));
+
+
+        ImageView nextImageView = (ImageView) findViewById(R.id.next_image_view);
+        nextImageView.setImageResource(imageIdMapNext.get(title).intValue());
+        TextView nextTextView = (TextView) findViewById(R.id.next_tip_view);
+        nextTextView.setText(tipIdMapNext.get(title));
     }
 
 
