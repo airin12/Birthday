@@ -4,16 +4,13 @@ import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.location.GpsStatus;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.support.v4.app.NotificationCompat;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -21,7 +18,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -30,9 +26,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.HashMap;
-import java.util.Map;
-
 
 public class MainMapActivity extends Activity implements LocationListener, GoogleMap.OnMarkerClickListener{
 
@@ -40,24 +33,87 @@ public class MainMapActivity extends Activity implements LocationListener, Googl
     private LocationManager locationManager;
     private Location actualLocation;
 
+    private Location [] testLocationArray = new Location[]{
+            new Location(LocationManager.GPS_PROVIDER),
+            new Location(LocationManager.GPS_PROVIDER)
+    };
+
     private Location [] locationArray = new Location[]{
+            new Location(LocationManager.GPS_PROVIDER),
+            new Location(LocationManager.GPS_PROVIDER),
+            new Location(LocationManager.GPS_PROVIDER),
+            new Location(LocationManager.GPS_PROVIDER),
+            new Location(LocationManager.GPS_PROVIDER),
+            new Location(LocationManager.GPS_PROVIDER),
+            new Location(LocationManager.GPS_PROVIDER),
+            new Location(LocationManager.GPS_PROVIDER),
             new Location(LocationManager.GPS_PROVIDER),
             new Location(LocationManager.GPS_PROVIDER)
     };
 
     {
-        locationArray[0].setLatitude(50.08754037913904);
-        locationArray[0].setLongitude(19.939354062080383);
+        // TEST
+//        testLocationArray[0].setLatitude(50.08754037913904);
+//        testLocationArray[0].setLongitude(19.939354062080383);
+//
+//        testLocationArray[1].setLatitude(50.06862685670055);
+//        testLocationArray[1].setLongitude(19.901154041290283);
 
-        locationArray[1].setLatitude(50.06862685670055);
-        locationArray[1].setLongitude(19.901154041290283);
+
+        // REAL
+        locationArray[0].setLatitude(50.018233);
+        locationArray[0].setLongitude(20.986663);
+
+        locationArray[1].setLatitude(50.021457);
+        locationArray[1].setLongitude(20.985052);
+
+        locationArray[2].setLatitude(50.022197);
+        locationArray[2].setLongitude(20.982292);
+
+        locationArray[3].setLatitude(50.020832);
+        locationArray[3].setLongitude(20.977588);
+
+        locationArray[4].setLatitude(50.018880);
+        locationArray[4].setLongitude(20.975716);
+
+        locationArray[5].setLatitude(50.015607);
+        locationArray[5].setLongitude(20.980590);
+
+        locationArray[6].setLatitude(50.015780);
+        locationArray[6].setLongitude(20.984651);
+
+        locationArray[7].setLatitude(50.013582);
+        locationArray[7].setLongitude(20.985880);
+
+        locationArray[8].setLatitude(50.009779);
+        locationArray[8].setLongitude(20.983324);
+
+        locationArray[9].setLatitude(50.008739);
+        locationArray[9].setLongitude(20.976670);
+
     }
 
-    private String [] descArray = new String[]{
+    private String [] testDescArray = new String[]{
             "dom",
             "basen"
     };
 
+    private String [] descArray = new String[]{
+            "m1",
+            "m2",
+            "m3",
+            "m4",
+            "m5",
+            "m6",
+            "m7",
+            "m8",
+            "m9",
+            "m10"
+    };
+
+
+    private static final int TEST_MAX_ID = 1;
+    private static final int MAX_ID = 9;
 
     private int actualIndexToDiscover = 0;
 //    private Location basen = new Location(LocationManager.GPS_PROVIDER);
@@ -72,7 +128,8 @@ public class MainMapActivity extends Activity implements LocationListener, Googl
         setContentView(R.layout.activity_main_map);
 
         prefs = this.getSharedPreferences("my_prefs",Context.MODE_PRIVATE);
-        actualIndexToDiscover = prefs.getInt("index",0);
+       // actualIndexToDiscover = prefs.getInt("index",0);
+        actualIndexToDiscover = MAX_ID + 1;
 
         createMapView();
 
@@ -131,8 +188,11 @@ public class MainMapActivity extends Activity implements LocationListener, Googl
                     googleMap.setMyLocationEnabled(true);
                 }
 
+//                for(int i = 0 ; i < actualIndexToDiscover ; i++){
+//                    addMarker(testLocationArray[i], testDescArray[i]);
+//                }
                 for(int i = 0 ; i < actualIndexToDiscover ; i++){
-                    addMarker(locationArray[i],descArray[i]);
+                    addMarker(locationArray[i], descArray[i]);
                 }
 
                 googleMap.setOnMarkerClickListener(this);
@@ -170,9 +230,9 @@ public class MainMapActivity extends Activity implements LocationListener, Googl
 
         actualLocation = location;
 
-        if(actualLocation.distanceTo(locationArray[actualIndexToDiscover]) < 500) {
+        if(actualIndexToDiscover > MAX_ID && actualLocation.distanceTo(locationArray[actualIndexToDiscover]) < 500) {
             notifyMainScreen("Jestes w okolicy: " + descArray[actualIndexToDiscover]);
-            addMarker(locationArray[actualIndexToDiscover],descArray[actualIndexToDiscover]);
+            addMarker(locationArray[actualIndexToDiscover], descArray[actualIndexToDiscover]);
             actualIndexToDiscover++;
             prefs.edit().putInt("index",actualIndexToDiscover).apply();
         }
