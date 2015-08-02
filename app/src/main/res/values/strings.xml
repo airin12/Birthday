@@ -44,13 +44,13 @@
         on zbyt wiele miejsca do przejścia...</string>
 
     <string name="actual_tip_2">Stań dokładnie w miejscu, które jest widoczna na zdjęciu.
-    Koło Ciebie będzie mały słupek, a na nim napis. Jaka jest ostatnia litera tego napisu?</string>
+    Koło Ciebie będzie mały słupek, a na nim napis. Jaka jest ostatnia litera tego napisu (wpisz jako małą literkę)?</string>
     <string name="next_tip_2">Mieszkałaś kiedyś na innej ulicy niż teraz.
     Idź w kierunku tej ulicy, a kiedy do niej dojdziesz skręć w lewo i idź aż dojdziesz do
     skrzyżowania.</string>
 
     <string name="actual_tip_3">Niedaleko jest budynek o numerze 5. Jaka jest piąta literka nazwiska pana,
-    który dał nazwę tej ulicy?</string>
+    który dał nazwę tej ulicy (wpisz ją jako małą literkę)?</string>
     <string name="next_tip_3">Znajdź stację benzynową znajdującą się nieopodal tego miejsca.</string>
 
     <string name="actual_tip_4">Ile liter ma nazwa firmy, do której należy stacja?</string>

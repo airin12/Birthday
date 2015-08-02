@@ -176,7 +176,6 @@ public class MainMapActivity extends Activity implements LocationListener, Googl
             if(null == googleMap){
                 googleMap = ((MapFragment) getFragmentManager().findFragmentById(
                         R.id.mapView)).getMap();
-
                 /**
                  * If the map is still null after attempted initialisation,
                  * show an error to the user
