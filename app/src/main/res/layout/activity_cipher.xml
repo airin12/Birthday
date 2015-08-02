@@ -7,11 +7,22 @@
     tools:context="pl.mb.birthday.CipherActivity"
     android:orientation="vertical">
 
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
     <TextView
         android:layout_marginTop="20dp"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/cipher_encoded_message"/>
+
     <TextView android:id="@+id/cipher_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,6 +39,9 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_marginTop="20dp"/>
+
+    </LinearLayout>
+    </ScrollView>
 
     <EditText
         android:id="@+id/key_cipher_edit_text"

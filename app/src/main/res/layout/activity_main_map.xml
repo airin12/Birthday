@@ -13,10 +13,4 @@
         android:layout_height="wrap_content"
         android:layout_weight="10"/>
 
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="40sp"
-        android:text="@string/save_location"
-        android:onClick="saveLocation"/>
-
 </LinearLayout>

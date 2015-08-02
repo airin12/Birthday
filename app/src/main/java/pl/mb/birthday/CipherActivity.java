@@ -10,12 +10,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+
 import pl.mb.birthday.pl.mb.mirthday.encryption.AES;
 
 
 public class CipherActivity extends Activity {
 
-    private final String message = "Prezent znajduje się w domu u niejakiej Natalii";
+    private final String message = "Prezent znajduje się przy ul. Reymonta 29/5 strzeżony " +
+            "przez niejakich Natalię i Kamila. Niestety strażnicy nie zawsze są na posterunku. " +
+            "Aby upewnić się czy można ich zastać możesz zadzwonić na 668 165 236 (Natalia) lub " +
+            "664 688 743 (Kamil).\0\0\0\0\0\0";
     private EditText keyEditText;
     private TextView messageTextView;
     private byte [] cipher;
@@ -30,12 +36,8 @@ public class CipherActivity extends Activity {
 
         String resultCipher = "";
         try {
-            cipher = AES.encrypt(message,"0123456789abcdef");
-            StringBuilder builder = new StringBuilder();
-            for(byte b : cipher)
-                builder.append(new Integer(b));
-
-            resultCipher = builder.toString();
+            cipher = AES.encrypt(message,"21@zr7IVAq196249");
+            resultCipher = new String(cipher,"UTF-8");
         } catch (Exception e) {
             e.printStackTrace();
             resultCipher = e.getMessage();

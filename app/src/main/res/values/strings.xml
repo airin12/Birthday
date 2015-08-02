@@ -33,35 +33,47 @@
     <string name="test_actual_tip_1">Coś o basenie</string>
     <string name="test_next_tip_1"></string>
 
-    <string name="actual_tip_0">Wskazowka 0</string>
-    <string name="next_tip_0">Next 0</string>
+    <string name="actual_tip_0">Ile ławek jest ułożonych w okrąg wokół
+    fontanny w górnej części parku? Policz tylko ławki
+    skierowane oparciem w kierunku środka okręgu.</string>
+    <string name="next_tip_0"></string>
 
-    <string name="actual_tip_1">Wskazowka 1</string>
-    <string name="next_tip_1">Next 1</string>
+    <string name="actual_tip_1">Na placu zabaw znajdują się stojaki na rower
+    o charakterystycznym kształcie. Co to za znak?</string>
+    <string name="next_tip_1">Niedaleko znajduje się pewien domek na skraju ulicy. Nie zostawia
+        on zbyt wiele miejsca do przejścia...</string>
 
-    <string name="actual_tip_2">Wskazowka 2</string>
-    <string name="next_tip_2">Next 2</string>
+    <string name="actual_tip_2">Stań dokładnie w miejscu, które jest widoczna na zdjęciu.
+    Koło Ciebie będzie mały słupek, a na nim napis. Jaka jest ostatnia litera tego napisu?</string>
+    <string name="next_tip_2">Mieszkałaś kiedyś na innej ulicy niż teraz.
+    Idź w kierunku tej ulicy, a kiedy do niej dojdziesz skręć w lewo i idź aż dojdziesz do
+    skrzyżowania.</string>
 
-    <string name="actual_tip_3">Wskazowka 3</string>
-    <string name="next_tip_3">Next 3</string>
+    <string name="actual_tip_3">Niedaleko jest budynek o numerze 5. Jaka jest piąta literka nazwiska pana,
+    który dał nazwę tej ulicy?</string>
+    <string name="next_tip_3">Znajdź stację benzynową znajdującą się nieopodal tego miejsca.</string>
 
-    <string name="actual_tip_4">Wskazowka 4</string>
-    <string name="next_tip_4">Next 4</string>
+    <string name="actual_tip_4">Ile liter ma nazwa firmy, do której należy stacja?</string>
+    <string name="next_tip_4"></string>
 
-    <string name="actual_tip_5">Wskazowka 5</string>
-    <string name="next_tip_5">Next 5</string>
+    <string name="actual_tip_5">Jeśli od XX odejmiesz numer tej szkoły to co otrzymasz?</string>
+    <string name="next_tip_5"></string>
 
-    <string name="actual_tip_6">Wskazowka 6</string>
-    <string name="next_tip_6">Next 6</string>
+    <string name="actual_tip_6">Pewien Anglik szedł sobie tą ulicą i zobaczył drogowskaz.
+    Miał ochotę popływać i zwrócił uwagę na jedną z pozycji. Jakie są dwie pierwsze litery zdania,
+    które przeczytał?</string>
+    <string name="next_tip_6"></string>
 
-    <string name="actual_tip_7">Wskazowka 7</string>
-    <string name="next_tip_7">Next 7</string>
+    <string name="actual_tip_7">Ile biedny podróżny musi pokonać stopni, aby dostać się na szczyt?</string>
+    <string name="next_tip_7">Idź ulicą Krakowską w dół aż napotkasz słonia. Wtedy skręć w lewo.</string>
 
-    <string name="actual_tip_8">Wskazowka 8</string>
-    <string name="next_tip_8">Next 8</string>
+    <string name="actual_tip_8">Wierzba strzeże jednego z budynków. Jaka jest suma cyfr liczby
+    będącej numerem tego budynku?</string>
+    <string name="next_tip_8"></string>
 
-    <string name="actual_tip_9">Wskazowka 9</string>
-    <string name="next_tip_9">Next 9</string>
+    <string name="actual_tip_9">Którego dnia miesiąca został odkryty Pluton?</string>
+    <string name="next_tip_9">Czasami warto spojrzeć na pewne sprawy z dalszej perspektywy
+    i zastanowić się w jaki sposób dotarliśmy do miejsca, w którym jesteśmy..</string>
 
 
 </resources>

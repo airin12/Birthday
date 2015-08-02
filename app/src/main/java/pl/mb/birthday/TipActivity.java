@@ -14,22 +14,25 @@ import java.util.Map;
 
 public class TipActivity extends Activity {
 
+    private static final int NO_IMAGE = Integer.MIN_VALUE;
+    private static final int NO_TIP = Integer.MIN_VALUE;
+
     private String [] testDescArray = new String[]{
             "dom",
             "basen"
     };
 
     private String [] descArray = new String[]{
-            "m1",
-            "m2",
-            "m3",
-            "m4",
-            "m5",
-            "m6",
-            "m7",
-            "m8",
-            "m9",
-            "m10"
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
     };
 
     private int [] testImageIdsActual = new int [] {
@@ -39,20 +42,20 @@ public class TipActivity extends Activity {
 
     private int [] testImageIdsNext = new int [] {
             R.drawable.basen,
-            R.drawable.mapka
+            R.drawable.next_9
     };
 
     private int [] imageIdsActual = new int [] {
-            R.drawable.webapp,
-            R.drawable.next_0,
-            R.drawable.next_1,
-            R.drawable.next_2,
-            R.drawable.next_3,
-            R.drawable.next_4,
-            R.drawable.next_5,
-            R.drawable.next_6,
-            R.drawable.next_7,
-            R.drawable.next_8
+            R.drawable.actual_0,
+            NO_IMAGE,
+            R.drawable.actual_2,
+            NO_IMAGE,
+            NO_IMAGE,
+            NO_IMAGE,
+            R.drawable.actual_6,
+            NO_IMAGE,
+            NO_IMAGE,
+            R.drawable.actual_9
 
     };
 
@@ -66,7 +69,7 @@ public class TipActivity extends Activity {
             R.drawable.next_6,
             R.drawable.next_7,
             R.drawable.next_8,
-            R.drawable.mapka
+            R.drawable.next_9
     };
 
     private Map<String,Integer> testImageIdMapActual = new HashMap<String, Integer>();
@@ -100,15 +103,15 @@ public class TipActivity extends Activity {
     };
 
     private int [] tipIdsNext = new int [] {
-            R.string.next_tip_0,
+            NO_TIP,
             R.string.next_tip_1,
             R.string.next_tip_2,
             R.string.next_tip_3,
-            R.string.next_tip_4,
-            R.string.next_tip_5,
-            R.string.next_tip_6,
+            NO_TIP,
+            NO_TIP,
+            NO_TIP,
             R.string.next_tip_7,
-            R.string.next_tip_8,
+            NO_TIP,
             R.string.next_tip_9
     };
 
@@ -156,7 +159,10 @@ public class TipActivity extends Activity {
 //        nextTextView.setText(testTipIdMapNext.get(title));
 
         ImageView actualImageView = (ImageView) findViewById(R.id.actual_image_view);
-        actualImageView.setImageResource(imageIdMapActual.get(title).intValue());
+        if(imageIdMapActual.get(title) != NO_IMAGE)
+            actualImageView.setImageResource(imageIdMapActual.get(title).intValue());
+        else
+            actualImageView.setVisibility(ImageView.GONE);
         TextView actualTextView = (TextView) findViewById(R.id.actual_tip_view);
         actualTextView.setText(tipIdMapActual.get(title));
 
@@ -164,8 +170,11 @@ public class TipActivity extends Activity {
         ImageView nextImageView = (ImageView) findViewById(R.id.next_image_view);
         nextImageView.setImageResource(imageIdMapNext.get(title).intValue());
         TextView nextTextView = (TextView) findViewById(R.id.next_tip_view);
-        nextTextView.setText(tipIdMapNext.get(title));
-    }
+        if(tipIdMapNext.get(title) != NO_TIP)
+            nextTextView.setText(tipIdMapNext.get(title));
+        else
+            nextTextView.setVisibility(TextView.GONE);
+}
 
 
     @Override

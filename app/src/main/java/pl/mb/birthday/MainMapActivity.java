@@ -27,7 +27,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 
-public class MainMapActivity extends Activity implements LocationListener, GoogleMap.OnMarkerClickListener{
+public class MainMapActivity extends Activity implements LocationListener, GoogleMap.OnMarkerClickListener, GoogleMap.OnMapClickListener {
 
     private GoogleMap googleMap;
     private LocationManager locationManager;
@@ -64,8 +64,8 @@ public class MainMapActivity extends Activity implements LocationListener, Googl
         locationArray[0].setLatitude(50.018233);
         locationArray[0].setLongitude(20.986663);
 
-        locationArray[1].setLatitude(50.021457);
-        locationArray[1].setLongitude(20.985052);
+        locationArray[1].setLatitude(50.021040);
+        locationArray[1].setLongitude(20.984944);
 
         locationArray[2].setLatitude(50.022197);
         locationArray[2].setLongitude(20.982292);
@@ -73,8 +73,8 @@ public class MainMapActivity extends Activity implements LocationListener, Googl
         locationArray[3].setLatitude(50.020832);
         locationArray[3].setLongitude(20.977588);
 
-        locationArray[4].setLatitude(50.018880);
-        locationArray[4].setLongitude(20.975716);
+        locationArray[4].setLatitude(50.018086);
+        locationArray[4].setLongitude(20.976875);
 
         locationArray[5].setLatitude(50.015607);
         locationArray[5].setLongitude(20.980590);
@@ -99,16 +99,16 @@ public class MainMapActivity extends Activity implements LocationListener, Googl
     };
 
     private String [] descArray = new String[]{
-            "m1",
-            "m2",
-            "m3",
-            "m4",
-            "m5",
-            "m6",
-            "m7",
-            "m8",
-            "m9",
-            "m10"
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
     };
 
 
@@ -128,13 +128,13 @@ public class MainMapActivity extends Activity implements LocationListener, Googl
         setContentView(R.layout.activity_main_map);
 
         prefs = this.getSharedPreferences("my_prefs",Context.MODE_PRIVATE);
-       // actualIndexToDiscover = prefs.getInt("index",0);
-        actualIndexToDiscover = MAX_ID + 1;
+        actualIndexToDiscover = prefs.getInt("index",0);
+        //actualIndexToDiscover = MAX_ID + 1;
 
         createMapView();
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,5000,5,this);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,2500,5,this);
 
         Toast.makeText(getApplicationContext(),
                 "running on create", Toast.LENGTH_SHORT).show();
@@ -196,6 +196,7 @@ public class MainMapActivity extends Activity implements LocationListener, Googl
                 }
 
                 googleMap.setOnMarkerClickListener(this);
+                googleMap.setOnMapClickListener(this);
 
             }
         } catch (NullPointerException exception){
@@ -224,18 +225,25 @@ public class MainMapActivity extends Activity implements LocationListener, Googl
 
             CameraPosition cameraPosition = new CameraPosition.Builder()
                     .target(new LatLng(location.getLatitude(),location.getLongitude()))      // Sets the center of the map to Mountain View
-                    .zoom(15)                   // Sets the zoom
+                    .zoom(16)                   // Sets the zoom
                     .build();                   // Creates a CameraPosition from the builder
             googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
         actualLocation = location;
 
-        if(actualIndexToDiscover > MAX_ID && actualLocation.distanceTo(locationArray[actualIndexToDiscover]) < 500) {
-            notifyMainScreen("Jestes w okolicy: " + descArray[actualIndexToDiscover]);
+        if(actualIndexToDiscover <= MAX_ID && actualLocation.distanceTo(locationArray[actualIndexToDiscover]) < 50) {
+            notifyMainScreen("Znalazłeś punkt nr: " + descArray[actualIndexToDiscover]);
             addMarker(locationArray[actualIndexToDiscover], descArray[actualIndexToDiscover]);
             actualIndexToDiscover++;
             prefs.edit().putInt("index",actualIndexToDiscover).apply();
         }
+
+//        if(actualIndexToDiscover <= MAX_ID && actualLocation.distanceTo(testLocationArray[actualIndexToDiscover]) < 50) {
+//            notifyMainScreen("Znalazłeś punkt nr: " + testDescArray[actualIndexToDiscover]);
+//            addMarker(testLocationArray[actualIndexToDiscover], testDescArray[actualIndexToDiscover]);
+//            actualIndexToDiscover++;
+//            prefs.edit().putInt("index",actualIndexToDiscover).apply();
+//        }
     }
 
     @Override
@@ -273,6 +281,7 @@ public class MainMapActivity extends Activity implements LocationListener, Googl
         Notification notification = mBuilder.build();
         notification.flags = Notification.DEFAULT_LIGHTS | Notification.FLAG_AUTO_CANCEL;
         notification.defaults |= Notification.DEFAULT_VIBRATE;
+        notification.defaults |= Notification.DEFAULT_SOUND;
         NotificationManager mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 // mId allows you to update the notification later on.
@@ -289,5 +298,14 @@ public class MainMapActivity extends Activity implements LocationListener, Googl
         startActivity(intent);
 
         return true;
+    }
+
+    // for test purposes
+    @Override
+    public void onMapClick(LatLng latLng) {
+        Location loc = new Location(LocationManager.GPS_PROVIDER);
+        loc.setLongitude(latLng.longitude);
+        loc.setLatitude(latLng.latitude);
+        onLocationChanged(loc);
     }
 }
